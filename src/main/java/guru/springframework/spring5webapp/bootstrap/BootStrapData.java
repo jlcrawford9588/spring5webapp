@@ -25,22 +25,6 @@ public class BootStrapData implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Author eric = new Author("Eric", "Evans");
-        Book ddd = new Book("Domain Driven Design", "123123");
-        eric.addBook(ddd);
-        ddd.addAuthor(eric);
-
-        authorRepository.save(eric);
-        bookRepository.save(ddd);
-
-        Author rod = new Author("Rod", "Johnson");
-        Book noEjb = new Book("J2EE Development without EJB", "55554444");
-        rod.addBook(noEjb);
-        noEjb.addAuthor(rod);
-
-        authorRepository.save(rod);
-        bookRepository.save(noEjb);
-
         Publisher johnnyPublishing = new Publisher();
         johnnyPublishing.setName("Johnny Publishing");
         johnnyPublishing.setAddressLine1("123 N 4th Ave");
@@ -49,6 +33,32 @@ public class BootStrapData implements CommandLineRunner {
         johnnyPublishing.setZip("55201");
         publisherRepository.save(johnnyPublishing);
 
-        System.out.println("JC TEST: Number of publishers: " + publisherRepository.count());
+        Author eric = new Author("Eric", "Evans");
+        Book ddd = new Book("Domain Driven Design", "123123");
+        eric.addBook(ddd);
+        ddd.addAuthor(eric);
+        ddd.setPublisher(johnnyPublishing);
+        johnnyPublishing.addBook(ddd);
+
+        authorRepository.save(eric);
+        bookRepository.save(ddd);
+        publisherRepository.save(johnnyPublishing);
+
+        Author rod = new Author("Rod", "Johnson");
+        Book noEjb = new Book("J2EE Development without EJB", "55554444");
+        rod.addBook(noEjb);
+        noEjb.addAuthor(rod);
+        noEjb.setPublisher(johnnyPublishing);
+        johnnyPublishing.addBook(noEjb);
+
+        authorRepository.save(eric);
+        bookRepository.save(ddd);
+        authorRepository.save(rod);
+        bookRepository.save(noEjb);
+        publisherRepository.save(johnnyPublishing);
+
+        System.out.println("JC TEST PUBLISHERS: " + publisherRepository.count());
+        System.out.println("JC TEST AUTHORS: " + authorRepository.count());
+        System.out.println("JC TEST BOOKS: " + bookRepository.count());
     }
 }
