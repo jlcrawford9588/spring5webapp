@@ -2,7 +2,9 @@ package guru.springframework.spring5webapp.model;
 
 import javax.persistence.*;
 import java.util.Set;
-
+/**
+A class
+**/
 @Entity
 public class Author {
 

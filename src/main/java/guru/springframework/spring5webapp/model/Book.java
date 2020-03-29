@@ -3,6 +3,9 @@ package guru.springframework.spring5webapp.model;
 import javax.persistence.*;
 import java.util.Set;
 
+/**
+* Adding a class level javadoc
+**/
 @Entity
 public class Book {
 
